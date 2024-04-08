@@ -1,0 +1,397 @@
+#samples
+PCCY = "C:/Users/roman_pecora/Documents/Audacity/“The Power of Christ compels you” edit.wav"
+scream ="C:/Users/roman_pecora/Documents/Audacity/Scary Sound Effects (Horror Scream).wav"
+
+#definitions
+define :drums do
+  with_bpm 120 do
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :sn_generic
+    sleep 0.4
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.2
+    sample :hat_snap
+    sleep 0.3
+    sample :drum_heavy_kick
+    sleep 0.4
+    sample :sn_generic
+    sleep 0.4
+    sample :drum_heavy_kick
+    sleep 0.4
+  end
+end
+
+define :main_theme do
+  play :E5
+  sleep 0.20
+  play :A5
+  sleep 0.20
+  play :E5
+  sleep 0.20
+  play :B5
+  sleep 0.20
+  play :E5
+  sleep 0.20
+  play :G5
+  sleep 0.20
+  play :A5
+  sleep 0.20
+  play :E5
+  sleep 0.20
+  play :C6
+  sleep 0.20
+  play :E5
+  sleep 0.20
+  play :D6
+  sleep 0.20
+  play :E5
+  sleep 0.20
+  play :B5
+  sleep 0.20
+  play :C6
+  sleep 0.20
+  play :E5
+  sleep 0.20
+  
+  play :A5
+  sleep 0.20
+  play :E5
+  sleep 0.20
+  play :B5
+  sleep 0.20
+  play :E5
+  sleep 0.20
+  play :G5
+  sleep 0.20
+  play :A5
+  sleep 0.20
+  play :E5
+  sleep 0.20
+  play :C6
+  sleep 0.20
+  play :E5
+  sleep 0.20
+  play :D6
+  sleep 0.20
+  play :E5
+  sleep 0.20
+  play :B5
+  sleep 0.20
+  play :C6
+  sleep 0.20
+  play :E5
+  sleep 0.20
+  play :B5
+  sleep 0.20
+end
+
+define :main_loop do |n1, n2, n3|
+  use_synth :piano
+  play n2
+  sleep 0.5
+  play n1
+  sleep 0.5
+  play n1
+  sleep 0.5
+  play n2
+  sleep 0.5
+  play n1
+  sleep 0.5
+  play n1
+  sleep 0.5
+  play n2
+  sleep 0.5
+  play n1
+  sleep 0.5
+  play n3
+  sleep 0.5
+  play n1
+  sleep 0.5
+end
+
+define :harmony do |b1, b2, b3|
+  play b1, release: 5
+  sleep 5
+  play :r
+  play b2, release: 5
+  sleep 5
+  play :r
+  play b3, release: 10
+  sleep 10
+  play :r
+  play b1, release: 5
+  sleep 5
+  play :r
+  play b2, release: 5
+  sleep 5
+  play :r
+end
+
+define :single_harmony do |b1, b2, b3|
+  play b1, release: 5
+  sleep 5
+  play :r
+  play b2, release: 5
+  sleep 5
+  play :r
+  play b3, release: 10
+  sleep 10
+  play :r
+end
+
+define :drum_beat do
+  sample :hat_sci
+  sleep 0.25
+  sample :hat_sci
+  sleep 0.25
+  sample :hat_sci
+  sleep 0.25
+  sample :hat_sci
+  sleep 0.25
+  sample :hat_sci
+  sleep 0.25
+end
+
+
+live_loop :tubular_bells do
+  6.times do
+    use_synth :piano
+    main_theme
+    with_fx :level, amp: 0.5 do
+    end
+  end
+  stop
+end
+
+sleep 6
+
+live_loop :harmony do
+  2.times do
+    with_fx :level, amp: 1 do
+      use_synth :prophet
+      main_theme
+    end
+  end
+  stop
+end
+
+sleep 6
+
+live_loop :drums do
+  4.times do
+    with_fx :level, amp: 0.5 do
+      drums
+    end
+  end
+  stop
+end
+
+
+live_loop :tubular_bells do
+  6.times do
+    with_fx :level, amp: 0.5 do
+      use_synth :tech_saws
+      main_theme
+    end
+  end
+  stop
+end
+
+sleep 20
+
+with_fx :distortion do
+  sample PCCY
+end
+
+sleep 4
+
+with_fx :distortion do
+  sample PCCY
+end
+
+sleep 4
+
+with_fx :distortion do
+  sample PCCY
+end
+
+sleep 4
+
+
+
+
+
+# Halloween Theme (Sonic Pi Version)
+use_bpm 140
+
+# Define the main melody
+
+
+live_loop :drum_line do
+  45.times do
+    drum_beat
+  end
+  stop
+end
+
+
+4.times do
+  with_fx :level, amp: 0.5 do
+    main_loop :fs5, :cs6, :d6
+  end
+end
+
+
+
+live_loop :main_loop_c do
+  2.times do
+    with_fx :level, amp: 1 do
+      use_synth :piano
+      main_loop :fs5, :cs6, :d6
+    end
+  end
+  stop
+end
+
+live_loop :low_harmony do
+  with_fx :level, amp: 0.65 do
+    use_synth :dsaw
+    harmony :fs2, :a2, :bb2
+  end
+  stop
+end
+
+sleep 10
+
+
+puts("main_loop_d")
+live_loop :main_loop_d do
+  2.times do
+    with_fx :level, amp: 1 do
+      use_synth :piano
+      main_loop :f5, :c6, :cs6
+    end
+  end
+  stop
+end
+
+sleep 10
+
+live_loop :Back_to_1 do
+  2.times do
+    with_fx :level, amp: 1 do
+      use_synth :piano
+      main_loop :fs5, :cs6, :d6
+    end
+  end
+  stop
+end
+
+sleep 9
+
+
+
+live_loop :drum_line2 do
+  30.times do
+    with_fx :level, amp: 0.5 do
+      drum_beat
+    end
+  end
+  stop
+end
+
+sleep 1
+
+puts("low_harmony2")
+live_loop :low_harmony2 do
+  with_fx :level, amp: 0.65 do
+    use_synth :dsaw
+    single_harmony :e2, :g2, :ab2
+  end
+  stop
+end
+
+
+puts("main_loop_e")
+live_loop :main_loop_e do
+  2.times do
+    with_fx :level, amp: 1 do
+      use_synth :piano
+      main_loop :e5, :b5, :c6
+    end
+  end
+  stop
+end
+
+
+
+sleep 10
+
+puts("main_loop_f")
+live_loop :main_loop_f do
+  2.times do
+    with_fx :level, amp: 1 do
+      use_synth :piano
+      main_loop :eb5, :bb5, :b5
+    end
+  end
+  stop
+end
+
+sleep 10
+
+puts("low_harmony3")
+live_loop :low_harmony3 do
+  with_fx :level, amp: 0.65 do
+    use_synth :dsaw
+    single_harmony :b2, :d3, :eb3
+  end
+  stop
+end
+
+
+live_loop :main_loop_g do
+  3.times do
+    with_fx :level, amp: 1 do
+      use_synth :piano
+      main_loop :b4, :fs5, :g5
+    end
+  end
+  stop
+end
+sleep 10
+sample scream
