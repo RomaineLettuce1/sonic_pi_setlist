@@ -1,3 +1,13 @@
+#sources
+#https://musescore.com/user/17373986/scores/3525751
+#https://musescore.com/fedegaribald1/scores/910561
+
+#SCREAM EFFECT
+#https://www.youtube.com/watch?v=4JvJd6BkBJ4
+
+#The power of Christ compels you
+#https://www.youtube.com/watch?v=D2D3fZpiGME
+
 #samples
 PCCY = "C:/Users/roman_pecora/Documents/Audacity/“The Power of Christ compels you” edit.wav"
 scream ="C:/Users/roman_pecora/Documents/Audacity/Scary Sound Effects (Horror Scream).wav"
@@ -233,26 +243,39 @@ end
 
 sleep 20
 
+x=1
+
 with_fx :distortion do
-  sample PCCY
+  with_fx :level, amp: x do
+    sample PCCY
+  end
 end
+
+x=x-0.25
 
 sleep 4
 
 with_fx :distortion do
-  sample PCCY
+  with_fx :level, amp: x do
+    sample PCCY
+  end
 end
+
+x=x-0.25
 
 sleep 4
 
 with_fx :distortion do
-  sample PCCY
+  with_fx :level, amp: x do
+    sample PCCY
+  end
 end
 
 sleep 4
 
-
-
+print("SECOND SONG!")
+sample scream
+sleep 2
 
 
 # Halloween Theme (Sonic Pi Version)
@@ -260,18 +283,22 @@ use_bpm 140
 
 # Define the main melody
 
+x=0.5
 
 live_loop :drum_line do
   45.times do
-    drum_beat
+    with_fx :level, amp: 1 do
+      drum_beat
+    end
   end
   stop
 end
 
 
 4.times do
-  with_fx :level, amp: 0.5 do
+  with_fx :level, amp: x do
     main_loop :fs5, :cs6, :d6
+    x=x+ 0.25
   end
 end
 
@@ -327,7 +354,7 @@ sleep 9
 
 live_loop :drum_line2 do
   30.times do
-    with_fx :level, amp: 0.5 do
+    with_fx :level, amp: 0.75 do
       drum_beat
     end
   end
@@ -392,6 +419,18 @@ live_loop :main_loop_g do
     end
   end
   stop
+end
+x=1
+sleep 10
+
+3.times do
+  with_fx :level, amp: x do
+    sample scream
+    x=x-0.25
+    sleep 2
+  end
+end
+
 end
 sleep 10
 sample scream
